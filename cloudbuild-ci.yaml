@@ -1,3 +1,10 @@
 steps:
-- name: 'ubuntu'
-  args: ['echo', 'hello world']
+  - name: python
+    entrypoint: python
+    args: ["-m", "pip", "install", "--upgrade", "pip"]
+  - name: python
+    entrypoint: python
+    args: ["-m", "pip", "install", "Flask"]
+  - name: python
+    entrypoint: python
+    args: ["-m", "Flask", "run"]
