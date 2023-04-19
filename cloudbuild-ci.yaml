@@ -13,6 +13,6 @@ steps:
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'pythonweb',
            '--image=gcr.io/${PROJECT_ID}/myimage:test',
-           '--port=5000',
+           '--port=8000',
            '--region', 'asia-east1', '--platform', 'managed',
            '--allow-unauthenticated']
