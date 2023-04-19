@@ -1,10 +1,17 @@
 steps:
+  # Install dependencies
   - name: python
-    entrypoint: python
-    args: ["-m", "pip", "install", "--upgrade", "pip"]
-  - name: python
-    entrypoint: python
-    args: ["-m", "pip", "install", "flask"]
-  - name: python
-    entrypoint: python
-    args: ["-m", "flask", "run"]
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt"]
+
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'python-docker', '.']
+
+  # Deploy to Cloud Run
+  - name: google/cloud-sdk
+    args: ['gcloud', 'run', 'deploy',
+           '--image=python-docker',
+           '--region', 'us-central1', '--platform', 'managed',
+           '--allow-unauthenticated']
