@@ -11,16 +11,16 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'asia.gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}', '.']
+           'gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}', '.']
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'asia.gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}']
+    args: ['push',  'gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}']
 
 
   # Deploy to Cloud Run
   - name: google/cloud-sdk
-    args: ['gcloud', 'run', 'deploy',
-           '--image=python-docker',
-           '--region', 'us-central1', '--platform', 'managed',
+    args: ['gcloud', 'run', 'deploy', 'pythonweb-${SHORT_SHA}',
+           '--image=gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}',
+           '--region', 'asia-east1', '--platform', 'managed',
            '--allow-unauthenticated']
