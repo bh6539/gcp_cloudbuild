@@ -1,9 +1,10 @@
 steps:
-  - name: docker.io/library/python:3.7
-    id: Check code style
-    entrypoint: /bin/sh
-    args:
-      - -c
-      - >-
-        pip install black==19.10b0 &&
-        black --check app.py
+  - name: python
+    entrypoint: python
+    args: ["-m", "pip", "install", "--upgrade", "pip"]
+  - name: python
+    entrypoint: python
+    args: ["-m", "pip", "install", "flask"]
+  - name: python
+    entrypoint: python
+    args: ["-m", "flask", "run"]
