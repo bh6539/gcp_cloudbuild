@@ -4,7 +4,7 @@ steps:
     args: ["-m", "pip", "install", "--upgrade", "pip"]
   - name: python
     entrypoint: python
-    args: ["-m", "pip", "install", "Flask"]
+    args: ["-m", "pip", "install", "flask"]
   - name: python
     entrypoint: python
-    args: ["-m", "Flask", "run"]
+    args: ["-m", "flask", "run"]
