@@ -22,5 +22,6 @@ steps:
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'pythonweb-${SHORT_SHA}',
            '--image=gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}',
+           '--port=5000',
            '--region', 'asia-east1', '--platform', 'managed',
            '--allow-unauthenticated']
