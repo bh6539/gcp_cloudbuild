@@ -1,13 +1,4 @@
 steps:
-  - name: python
-    entrypoint: python
-    args: ["-m", "pip", "install", "--upgrade", "pip"]
-
-  # Install dependencies
-  - name: python
-    entrypoint: pip
-    args: ["install", "-r", "requirements.txt"]
-
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
