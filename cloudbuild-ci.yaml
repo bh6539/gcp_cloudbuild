@@ -1,9 +1,18 @@
 steps:
-  - name: docker.io/library/python:3.7
-    id: Check code style
-    entrypoint: /bin/sh
-    args:
-      - -c
-      - >-
-        pip install black==19.10b0 &&
-        black --check app.py
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}', '.']
+
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',  'gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}']
+
+
+  # Deploy to Cloud Run
+  - name: google/cloud-sdk
+    args: ['gcloud', 'run', 'deploy', 'pythonweb-${SHORT_SHA}',
+           '--image=gcr.io/${PROJECT_ID}/myimage:${SHORT_SHA}',
+           '--port=5000',
+           '--region', 'asia-east1', '--platform', 'managed',
+           '--allow-unauthenticated']
