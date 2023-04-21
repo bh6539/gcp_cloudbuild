@@ -10,23 +10,9 @@ steps:
 
 
   # Deploy to Cloud Run
-  # - name: google/cloud-sdk
-  #   args: ['gcloud', 'run', 'deploy', 'pythonweb',
-  #          '--image=gcr.io/${PROJECT_ID}/myimage:test',
-  #          '--port=8000',
-  #          '--region', 'asia-east1', '--platform', 'managed',
-  #          '--allow-unauthenticated']
-
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: gcloud
-    args:
-      [
-        "run",
-        "deploy",
-        "pythonweb",
-        "--image=gcr.io/${PROJECT_ID}/myimage:test",
-        "--port=5000",
-        "--region=asia-east1",
-        "--platform=managed",
-        "--allow-unauthenticated",
-      ]
+  - name: google/cloud-sdk
+    args: ['gcloud', 'run', 'deploy', 'pythonweb',
+           '--image=gcr.io/${PROJECT_ID}/myimage:test',
+           '--port=8000',
+           '--region', 'asia-east1', '--platform', 'managed',
+           '--allow-unauthenticated']
