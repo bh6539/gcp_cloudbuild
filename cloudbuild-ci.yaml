@@ -23,7 +23,7 @@ steps:
       [
         "run",
         "deploy",
-        "pythonweb"
+        "pythonweb",
         "--image=gcr.io/${PROJECT_ID}/myimage:test",
         "--port=8000",
         "--region=asia-east1",
