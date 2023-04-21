@@ -13,7 +13,6 @@ def board(request):
 def test(request):
     db = psycopg2.connect(host='34.64.201.252', dbname='board',user='postgres',password='test',port=5432)
     cursor = db.cursor()
-    #cursor.execute("INSERT INTO board VALUE (5, 'test', 'tttt', '2023-04-21')")
     cursor.execute("SELECT * FROM board")
     data = cursor.fetchall()
     return render(request, 'test.html', {'value' : data})
