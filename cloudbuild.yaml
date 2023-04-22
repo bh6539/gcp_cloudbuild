@@ -16,3 +16,4 @@ steps:
            '--port=5000',
            '--region', 'asia-east1', '--platform', 'managed',
            '--allow-unauthenticated']
+           
