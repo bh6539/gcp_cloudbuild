@@ -1,18 +1,10 @@
-FROM python:3.7.8-slim
+FROM python:3.8-slim-buster
 
-MAINTAINER heumsi@gmail.com
-
-RUN apt-get -y update && \
-    apt-get install -y vim && \
-    apt-get install -y telnet && \
-    apt-get install -y wget
-
-RUN python -m pip install --upgrade pip
-
-COPY . /app
 WORKDIR /app
 
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-EXPOSE 5000
+COPY . .
+
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
